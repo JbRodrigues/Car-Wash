@@ -1,1 +1,1 @@
-# Barber Shop Project made with PHP
+# Car Wash Project made with PHP
