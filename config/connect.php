@@ -5,7 +5,7 @@ define('PASS', '');
 define('DATABASE', 'carwash');
 
 
-function connecta()
+function connect()
 {
 
     $mysqli = new mysqli(HOST, DB_USER, PASS, DATABASE);

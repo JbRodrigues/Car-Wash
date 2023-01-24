@@ -9,17 +9,17 @@
         extract($post);
         if (!in_array("", $post)) {
 
-            if ($usuSenha != $usuConfirmaSenha) {
-                echo "Senhas Não conferem!";
+            if ($User_pass != $User_passConfirm) {
+                echo "The passwords does't match!";
             } else {
 
                 $usuSenha = md5($User_pass);
                 $usuNome = ucfirst($User_name);
-                $sql = "INSERT INTO user ";
-                $sql .= "(User_name, User_login, User_pass, User_email, User_phone) VALUES";
+                $sql = "INSERT INTO users ";
+                $sql .= "(`User_name`, `User_login`, `User_pass`, `User_email`, `User_phone`) VALUES";
                 $sql .= "('{$User_name}','{$User_pass}','{$User_login}')";
 
-                $con = connecta();
+                $con = connect();
                 $con->query($sql);
 
                 if ($con->affected_rows > 0) {
@@ -67,8 +67,8 @@
             <label for="create_name">Confirm Password</label>
             <input type="text" id="create_passConfirm" name="User_passConfirm" value="<?= (isset($User_passConfirm)) ? $User_passConfirm : ""; ?>">
 
-            <input type="button" value="send" id="create_send">
-            <input type="reset" value="clear" id="create_clear">
+            <input type="button" value="send" id="create_send" name="send">
+            <input type="reset" value="clear" id="create_clear" name="clear">
         </form>
     </main>
 </body>
