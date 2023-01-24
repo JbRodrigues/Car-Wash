@@ -8,20 +8,14 @@ define('DATABASE', 'carwash');
 function connect()
 {
 
-    $mysqli = new mysqli(HOST, DB_USER, PASS, DATABASE);
+    $mysqli = new mysqli(HOST, DB_USER, PASS);
+    mysqli_select_db($mysqli, DATABASE);
     $mysqli->set_charset("utf8");
     if ($mysqli->connect_errno) {
-        echo ("The Connection Fail:" . $mysqli->connect_errno);
+        echo ("Falha na conexão:" . $mysqli->connect_errno);
         return false;
     } else {
         //echo "Conectou";
         return $mysqli;
     }
-}
-
-function extExt($name)
-{
-    $resultado = substr($name, strripos($name, '.'));
-
-    return ($resultado);
 }

@@ -1,37 +1,45 @@
 <?php
-    include_once("../config/connect.php");
-    session_start();
+include_once("../config/connect.php");
+session_start();
 
-    if (isset($_POST['send'])) {
-        //echo "Formulario Enviado!";
-        $post = $_POST;
-        unset($post['send']);
-        extract($post);
-        if (!in_array("", $post)) {
+$User_name = "";
+$User_login = "";
+$User_pass = "";
+$User_email = "";
+$User_phone = "";
 
-            if ($User_pass != $User_passConfirm) {
-                echo "The passwords does't match!";
-            } else {
+if (isset($_POST['create_send'])) {
+    //echo "Formulario Enviado!";
+    $post = $_POST;
+    unset($post['create_send']);
+    extract($post);
+    if (!in_array("", $post)) {
 
-                $usuSenha = md5($User_pass);
-                $usuNome = ucfirst($User_name);
-                $sql = "INSERT INTO users ";
-                $sql .= "(`User_name`, `User_login`, `User_pass`, `User_email`, `User_phone`) VALUES";
-                $sql .= "('{$User_name}','{$User_pass}','{$User_login}')";
-
-                $con = connect();
-                $con->query($sql);
-
-                if ($con->affected_rows > 0) {
-                    header("location:index.php");
-                } else {
-                    echo "Error!";
-                }
-            }
+        if ($User_pass != $User_passConfirm) {
+            echo "The passwords does't match!";
         } else {
-            $msg = "All Fields need to be filled";
+
+            $User_pass = md5($User_pass);
+            $User_name = ucfirst($User_name);
+            $sql = "INSERT INTO users ";
+			$sql .= "(User_name, User_login, User_pass, User_email, User_phone) VALUES";
+			$sql .= "('$User_name','$User_login','$User_pass', '$User_email', '$User_phone')";
+
+            $con = connect();
+            $con->query($sql);
+
+            if ($con->affected_rows > 0) {
+                header("location:../index.php?200");
+            } else {
+                echo "Error!";
+            }
         }
+    } else {
+        $msg = "All Fields need to be filled";
     }
+}
+
+
 
 ?>
 
@@ -67,7 +75,7 @@
             <label for="create_name">Confirm Password</label>
             <input type="text" id="create_passConfirm" name="User_passConfirm" value="<?= (isset($User_passConfirm)) ? $User_passConfirm : ""; ?>">
 
-            <input type="button" value="send" id="create_send" name="send">
+            <input type="submit" value="send" id="create_send" name="create_send">
             <input type="reset" value="clear" id="create_clear" name="clear">
         </form>
     </main>

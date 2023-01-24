@@ -2,7 +2,7 @@
 include_once("./config/connect.php");
 
 
-if (isset($_POST['signin'])) {
+if (isset($_POST['index_send'])) {
     $con = connect();
     $User_login = filter_input(INPUT_POST, 'User_login');
     $User_pass = filter_input(INPUT_POST, 'User_pass');
@@ -17,15 +17,14 @@ if (isset($_POST['signin'])) {
         session_start();
         $_SESSION['User_name'] = $user['User_name'];
         $_SESSION['User_id'] = $user['User_id'];
-
         header('location:app/index.php');
     } else {
         $msg = "Login or Password are wrong!";
     }
 }
 
-if (isset($_POST['signin'])) {
-    header('location:app/create_user.php?create_user');
+if (isset($_POST['index_signin'])) {
+    header('location:app/create_user.php');
 }
 
 ?>
@@ -53,9 +52,9 @@ if (isset($_POST['signin'])) {
             <label for="index_password">Password</label>
             <input type="password" name="index_password" id="index_password">
 
-            <input type="submit" value="Login" class="index_button" id="index_send" name="Login">
+            <input type="submit" value="send" class="index_button" id="index_send" name="index_send">
             <input type="reset" value="Clear" class="index_button" id="index_reset">
-            <input type="submit" value="signin" class="index_button" id="index_signin" name="signin">
+            <input type="submit" value="signin" class="index_button" id="index_signin" name="index_signin">
         </form>
 
 
