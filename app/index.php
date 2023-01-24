@@ -1,5 +1,8 @@
 <?php
-$create_name = "Julio Bisaia"
+
+include_once("../config/connect.php");
+
+session_start();
 
 ?>
 
@@ -16,7 +19,7 @@ $create_name = "Julio Bisaia"
 <body>
 
     <main>
-        <h1>Be Welcome - <?php echo $create_name ?></h1>
+        <h1>Be Welcome - <?php echo "name" ?></h1>
     </main>
 
 </body>

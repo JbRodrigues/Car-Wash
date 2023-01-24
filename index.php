@@ -1,5 +1,5 @@
 <?php
-    include_once("config/connect.php")
+include_once("./config/connect.php")
 
 ?>
 
@@ -16,7 +16,7 @@
 <body>
     <main>
         <div class="index_icon">
-            <img src="" alt="barber icon">
+            <img src="" alt="carwash icon">
         </div>
 
         <form action="get">
