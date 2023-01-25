@@ -4,6 +4,8 @@ include_once("../config/connect.php");
 
 session_start();
 
+$user = $_SESSION['User_name'];
+var_dump($user);
 ?>
 
 <!DOCTYPE html>
@@ -19,7 +21,7 @@ session_start();
 <body>
 
     <main>
-        <h1>Be Welcome - <?php echo "name" ?></h1>
+        <h1>Be Welcome - <?php echo $user ?></h1>
     </main>
 
 </body>

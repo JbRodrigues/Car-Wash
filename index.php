@@ -1,9 +1,9 @@
 <?php
 include_once("./config/connect.php");
 
-
 if (isset($_POST['index_send'])) {
     $con = connect();
+
     $User_login = filter_input(INPUT_POST, 'User_login');
     $User_pass = filter_input(INPUT_POST, 'User_pass');
     $User_pass = md5($User_pass);
@@ -12,11 +12,13 @@ if (isset($_POST['index_send'])) {
     $result = $con->query($sql);
 
     if ($result->num_rows) {
-        $usuario = $result->fetch_assoc();
-
+        $user = $result->fetch_assoc();
+        var_dump($user);
         session_start();
         $_SESSION['User_name'] = $user['User_name'];
         $_SESSION['User_id'] = $user['User_id'];
+        var_dump($_SESSION['User_id']);
+
         header('location:app/index.php');
     } else {
         $msg = "Login or Password are wrong!";
@@ -46,11 +48,16 @@ if (isset($_POST['index_signin'])) {
         </div>
 
         <form action="index.php" method="post">
+
+            <?php
+            echo (isset($msg)) ? $msg : '';
+            ?>
+
             <label for="index_login">Login</label>
-            <input type="text" name="index_login">
+            <input type="text" name="User_login" id="User_login">
 
             <label for="index_password">Password</label>
-            <input type="password" name="index_password" id="index_password">
+            <input type="password" name="User_pass" id="User_pass">
 
             <input type="submit" value="send" class="index_button" id="index_send" name="index_send">
             <input type="reset" value="Clear" class="index_button" id="index_reset">
